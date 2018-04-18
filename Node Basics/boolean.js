@@ -11,9 +11,10 @@ function isVarValid(booleanVar){
 function toogleBool (booleanVar){
   if (typeof booleanVar === 'boolean') {
     return !booleanVar;
-  }
+  } else console.log('Not a boolean!');
 }
 
 isVarValid(isValid);
 var isValid = toogleBool(isValid);
 isVarValid(isValid);
+var isValid = toogleBool('Roderick');

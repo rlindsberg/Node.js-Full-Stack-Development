@@ -1,11 +1,8 @@
-var grade = [90, 80, 'Pass', true];
+var grade = [100, 50, 75];
+var totalGrade = 0;
+for (var i = 0; i < grade.length; i++) {
+  totalGrade += grade[i];
+}
+var averageGrade = totalGrade / grade.length;
 
-grade.push(100);
-grade.unshift(10);
-console.log(grade);
-
-var gradePop = grade.pop(); //keep the last item
-console.log(gradePop);
-
-var gradePop = grade.shift(); //keep the first item
-console.log(gradePop);
+console.log(averageGrade);

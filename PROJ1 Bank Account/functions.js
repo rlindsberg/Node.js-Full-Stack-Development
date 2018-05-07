@@ -1,7 +1,11 @@
-var account = {
-  balance: 0
-};
+var accounts = [];
 
+function createAccount(newAccount){
+  //push to the account-array
+  accounts.push(newAccount);
+  //return account
+  return newAccount;
+}
 //deposit
 function Deposit (myAccount, myAmount){
   myAccount.balance += myAmount;

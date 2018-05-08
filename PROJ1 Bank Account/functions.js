@@ -6,6 +6,15 @@ function createAccount(newAccount){
   //return account
   return newAccount;
 }
+function getAccount(myUsername){
+  var matchedAccount;
+  accounts.forEach(function (account){
+    if (account.username === myUsername) {
+      matchedAccount = account;
+    }
+  });
+  return matchedAccount;
+}
 //deposit
 function Deposit (myAccount, myAmount){
   myAccount.balance += myAmount;

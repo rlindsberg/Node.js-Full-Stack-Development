@@ -3,6 +3,8 @@ var accounts = [];
 function createAccount(newAccount){
   //push to the account-array
   accounts.push(newAccount);
+  console.log('Account created.');
+  console.log(getAccount(newAccount.username));
   //return account
   return newAccount;
 }
@@ -13,23 +15,31 @@ function getAccount(myUsername){
       matchedAccount = account;
     }
   });
+  console.log('Account get: ');
   return matchedAccount;
 }
 //deposit
-function Deposit (myAccount, myAmount){
-  myAccount.balance += myAmount;
+function Deposit (myUsername, myAmount){
+  accounts.forEach(function (account){
+    if (account.username === myUsername) {
+      account.balance += myAmount;
+      console.log('We got your money.');
+    }
+  });
+  console.log(getAccount(myUsername));
 }
 //withdraw
-function Withdraw (myAccount, myAmount){
+function Withdraw (myUsername, myAmount){
   myAccount.balance -= myAmount;
 }
 //get balance
-function getBalance (myAccount){
+function getBalance (myUsername){
   console.log(myAccount.balance);
 }
 
-Deposit (account, 1000);
-getBalance(account);
+var rodericksAccount = createAccount({
+  username: 'rlindsberg',
+  balance: 1000000
+});
 
-Withdraw (account, 101);
-getBalance(account);
+Deposit('rlindsberg', 100);

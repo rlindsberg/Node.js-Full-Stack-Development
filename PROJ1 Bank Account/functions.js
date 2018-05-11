@@ -30,16 +30,36 @@ function Deposit (myUsername, myAmount){
 }
 //withdraw
 function Withdraw (myUsername, myAmount){
-  myAccount.balance -= myAmount;
+  accounts.forEach(function (account){
+    if (account.username === myUsername) {
+      account.balance -= myAmount;
+      console.log('Please take care of your money.');
+    }
+  });
+  console.log(getAccount(myUsername));
 }
 //get balance
 function getBalance (myUsername){
-  console.log(myAccount.balance);
+  var matchedAccount;
+  accounts.forEach(function (account){
+    if (account.username === myUsername) {
+      matchedAccount = account;
+      console.log('We got a match.');
+    }
+  });
+  console.log(matchedAccount.balance);
+  return matchedAccount.balance;
 }
 
+//Main
+//Create account
 var rodericksAccount = createAccount({
   username: 'rlindsberg',
   balance: 1000000
 });
-
+//Deposit some cash
 Deposit('rlindsberg', 100);
+//Withdraw some cash
+Withdraw('rlindsberg', 900);
+//What is my balance?
+getBalance('rlindsberg');

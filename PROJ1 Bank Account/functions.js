@@ -63,3 +63,10 @@ Deposit('rlindsberg', 100);
 Withdraw('rlindsberg', 900);
 //What is my balance?
 getBalance('rlindsberg');
+
+//Create another account
+var JohnsAccount = createAccount({
+  username: 'jlindberg',
+  balance: 1000
+});
+console.log(accounts);

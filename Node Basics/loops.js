@@ -9,3 +9,11 @@ while (i < countLimit){
 for (var i = 0; i < countLimit; i++) {
   console.log('for: ' + i);
 }
+
+function countDown (startingPoint, stoppingPoint){
+  for (var i = startingPoint; i >= stoppingPoint; i--) {
+    console.log('Counting down: ' + i);
+  }
+}
+
+countDown(10, 0);

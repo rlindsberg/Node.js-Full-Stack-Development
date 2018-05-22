@@ -10,10 +10,9 @@ greetRodde();
 
 
 function createAdder(baseNumber){
-  function add(numberToAdd){
+  return function add(numberToAdd){
     return baseNumber + numberToAdd;
   }
-  return add;
 }
 
 var addTen = createAdder(10);

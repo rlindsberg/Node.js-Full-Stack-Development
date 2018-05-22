@@ -11,5 +11,8 @@
     "manager"
   ],
   "author": "Roderick Karlemstrand",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "dependencies": {
+    "node-persist": "^3.0.1"
+  }
 }

@@ -60,32 +60,34 @@ function getBalance (myUsername){
   return matchedAccount.balance;
 }
 
-function createBalanceGetter(myAccountUsername){
-  return function anonymousFunction(myUsername){
-    return getBalance(myUsername);
+function createBalanceGetter(myAccount){
+  return function anonymousFunction(){
+    return myAccount.balance;
   }
 }
 //Main
-//Create function to get balance
-var balanceGetter = createBalanceGetter('rlindsberg');
-
 //Create account
 var rodericksAccount = createAccount({
   username: 'rlindsberg',
   balance: 1000000
 });
+
+//Create function to get balance
+var aDuplicateAccount = getAccount('rlindsberg');
+var balanceGetter = createBalanceGetter(aDuplicateAccount);
+
 //Deposit some cash
 Deposit('rlindsberg', 100);
 console.log('Testing closure...');
-balanceGetter('rlindsberg');
+console.log(balanceGetter());
 //Withdraw some cash
 Withdraw('rlindsberg', 'hahaha');
 console.log('Testing closure...');
-balanceGetter('rlindsberg');
+console.log(balanceGetter());
 
 Withdraw('rlindsberg', 900);
 console.log('Testing closure...');
-balanceGetter('rlindsberg');
+console.log(balanceGetter());
 //What is my balance?
 getBalance('rlindsberg');
 
@@ -94,6 +96,5 @@ var JohnsAccount = createAccount({
   username: 'jlindeberg',
   balance: 1000
 });
-console.log('Testing closure...');
-balanceGetter('jlindeberg');
+
 console.log(accounts);

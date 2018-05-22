@@ -1,0 +1,15 @@
+{
+  "name": "proj2-password-manager--an-npm-based-app",
+  "version": "1.0.0",
+  "description": "An app to manage passwords locally.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "password",
+    "manager"
+  ],
+  "author": "Roderick Karlemstrand",
+  "license": "GPL-3.0"
+}

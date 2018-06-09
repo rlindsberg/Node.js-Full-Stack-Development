@@ -4,5 +4,9 @@ console.log('Starting application');
 var storage = require('node-persist');
 storage.initSync();
 
-storage.setItemSync('name', 'Andre');
-console.log(storage.getItemSync('name'));
+storage.setItemSync('accounts', [{
+  username: 'rlindsberg',
+  balance: 0
+}]);
+
+console.log(storage.getItemSync('accounts'));

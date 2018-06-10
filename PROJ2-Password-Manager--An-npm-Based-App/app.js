@@ -25,5 +25,10 @@ function getPassword(myUsername){
   return matchedAccount;
 }
 
-savePassword({"website":"Twitter","username":"rlind","password":"HelloWorld"})
+savePassword({
+  website:"Twitter",
+  username:"rlind",
+  password:"HelloWorld"
+});
+
 console.log(getPassword('rlind'));

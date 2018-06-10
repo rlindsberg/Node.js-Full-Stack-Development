@@ -4,19 +4,29 @@ console.log('Starting application');
 var storage = require('node-persist');
 storage.initSync();
 
-storage.setItemSync('accounts', [{
-  username: 'rlindsberg',
-  balance: 0
-}]);
+function savePassword(accountArray){
+  var accountManager = storage.getItemSync('accounts');
 
-var bankAccounts = storage.getItemSync('accounts');
+  //push new password to array
+  accountManager.push({
+    website: 'Facebook',
+    username: 'rlindsberg',
+    password: 'HelloWorld'
+  })
+  //save new password to storage
+  storage.setItemSync('accounts', accountManager)
+}
 
-console.log('push on a new account..');
-bankAccounts.push({
-  username: 'jlindberg',
-  balance: 1000
-})
-console.log('save using setItemSync');
-storage.setItemSync('accounts', bankAccounts)
+function getPassword(myUsername){
+  var accountManager = storage.getItemSync('accounts');
+  var matchedAccount;
+  for (var i = 0; i < accountManager.length; i++) {
+    if (accountManager[i].username === myUsername) {
+      matchedAccount = accountManager[i];
+    }
+  }
+  console.log('Account get: ');
+  return matchedAccount;
+}
 
-console.log(storage.getItemSync('accounts'));
+console.log(getPassword('rlindsberg'));

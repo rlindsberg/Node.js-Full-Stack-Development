@@ -8,11 +8,7 @@ function savePassword(accountArray){
   var accountManager = storage.getItemSync('accounts');
 
   //push new password to array
-  accountManager.push({
-    website: 'Facebook',
-    username: 'rlindsberg',
-    password: 'HelloWorld'
-  })
+  accountManager.push(accountArray)
   //save new password to storage
   storage.setItemSync('accounts', accountManager)
 }
@@ -29,4 +25,5 @@ function getPassword(myUsername){
   return matchedAccount;
 }
 
-console.log(getPassword('rlindsberg'));
+savePassword({"website":"Twitter","username":"rlind","password":"HelloWorld"})
+console.log(getPassword('rlind'));

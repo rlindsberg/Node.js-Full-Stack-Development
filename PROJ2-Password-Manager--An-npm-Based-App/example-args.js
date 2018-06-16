@@ -3,10 +3,16 @@ var argv = require('yargs')
     yargs.options({
       name: {
         demand: true,
-        alias: 'n' //alias for --name
+        alias: 'n', //alias for --name
+        description: 'Your first name goes here'
+      },
+      lastName: {
+        demand: true,
+        description: 'Your last name goes here'
       }
     }); //.options takes an object as parameter
   }) //command, description, function
+  .help('help')
   .argv; //chaining
 
 var command = argv._[0];

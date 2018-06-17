@@ -26,17 +26,18 @@ var argv = require('yargs')
   })
   .help('help')
   .argv;
+var command = argv._[0];
 
-console.log(argv);
+console.log('argv is ' + argv);
+console.log('The command got from user is ' + command);
 
-
-function savePassword(accountArray){
+if (command === 'save-pass') {
   var accountManager = storage.getItemSync('accounts');
+  var accountArray = {'website': argv.website, 'username': argv.username, 'password': argv.password}
+  console.log(accountArray);
+}
+function savePassword(accountArray){
 
-  //push new password to array
-  accountManager.push(accountArray)
-  //save new password to storage
-  storage.setItemSync('accounts', accountManager)
 }
 
 function getPassword(myUsername){

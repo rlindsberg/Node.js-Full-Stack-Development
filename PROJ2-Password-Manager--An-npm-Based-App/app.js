@@ -4,6 +4,32 @@ console.log('Starting application');
 var storage = require('node-persist');
 storage.initSync();
 
+var argv = require('yargs')
+  .command('save-pass', 'Save password to node-persist', function(yargs){
+    yargs.options({
+      website: {
+        demand: true,
+        alias: 'w',
+        description: 'Enter the website here, without http/https'
+      },
+      username: {
+        demand: true,
+        alias: 'u',
+        description: 'Enter your username or email address used to log in the website'
+      },
+      password: {
+        demand: true,
+        alias: 'p',
+        description: 'Enter your password to the website'
+      }
+    });
+  })
+  .help('help')
+  .argv;
+
+console.log(argv);
+
+
 function savePassword(accountArray){
   var accountManager = storage.getItemSync('accounts');
 
@@ -25,10 +51,10 @@ function getPassword(myUsername){
   return matchedAccount;
 }
 
-savePassword({
-  website:"Twitter",
-  username:"rlind",
-  password:"HelloWorld"
-});
+// savePassword({
+//   website:"Twitter",
+//   username:"rlind",
+//   password:"HelloWorld"
+// });
 
-console.log(getPassword('rlind'));
+// console.log(getPassword('rlind'));

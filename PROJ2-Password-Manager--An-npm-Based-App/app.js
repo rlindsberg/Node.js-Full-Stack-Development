@@ -37,7 +37,8 @@ var argv = require('yargs')
   .argv;
 var command = argv._[0];
 
-console.log('argv is ' + argv);
+console.log('argv is: ');
+console.log(argv);
 console.log('The command got from user is ' + command);
 
 // save credentials from command line to database
@@ -62,6 +63,12 @@ if (command === 'get-pass') {
       matchedAccount = accountManager[i];
     }
   }
-  console.log('Account get: ');
-  console.log(matchedAccount);
+
+  if (typeof matchedAccount === 'undefined') {
+    console.log(argv.username + " doesn't exist");
+  } else {
+    console.log('Account get: ');
+    console.log(matchedAccount);
+  }
+
 }

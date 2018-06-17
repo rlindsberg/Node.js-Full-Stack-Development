@@ -34,11 +34,15 @@ console.log('The command got from user is ' + command);
 if (command === 'save-pass') {
   var accountManager = storage.getItemSync('accounts');
   var accountArray = {'website': argv.website, 'username': argv.username, 'password': argv.password}
-  console.log(accountArray);
+  console.log('The credentials I got is ' + accountArray);
+  console.log('Pushing to accountArray..');
+  //push new password to array
+  accountManager.push(accountArray)
+  console.log('Saving to node-persist..');
+  //save new password to storage
+  storage.setItemSync('accounts', accountManager)
 }
-function savePassword(accountArray){
 
-}
 
 function getPassword(myUsername){
   var accountManager = storage.getItemSync('accounts');

@@ -24,6 +24,15 @@ var argv = require('yargs')
       }
     });
   })
+  .command('get-pass', 'Get password from node-persist', function(yargs){
+    yargs.options({
+      username: {
+        demand: true,
+        alias: 'u',
+        description: 'Enter your username or email address used to log in the website'
+      }
+    });
+  })
   .help('help')
   .argv;
 var command = argv._[0];
@@ -31,6 +40,7 @@ var command = argv._[0];
 console.log('argv is ' + argv);
 console.log('The command got from user is ' + command);
 
+// save credentials from command line to database
 if (command === 'save-pass') {
   var accountManager = storage.getItemSync('accounts');
   var accountArray = {'website': argv.website, 'username': argv.username, 'password': argv.password}
@@ -43,23 +53,15 @@ if (command === 'save-pass') {
   storage.setItemSync('accounts', accountManager)
 }
 
-
-function getPassword(myUsername){
+// get credentials from database to command line
+if (command === 'get-pass') {
   var accountManager = storage.getItemSync('accounts');
   var matchedAccount;
   for (var i = 0; i < accountManager.length; i++) {
-    if (accountManager[i].username === myUsername) {
+    if (accountManager[i].username === argv.username) {
       matchedAccount = accountManager[i];
     }
   }
   console.log('Account get: ');
-  return matchedAccount;
+  console.log(matchedAccount);
 }
-
-// savePassword({
-//   website:"Twitter",
-//   username:"rlind",
-//   password:"HelloWorld"
-// });
-
-// console.log(getPassword('rlind'));

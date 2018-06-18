@@ -45,13 +45,14 @@ console.log('The command got from user is ' + command);
 if (command === 'save-pass') {
   var accountManager = storage.getItemSync('accounts');
   var accountArray = {'website': argv.website, 'username': argv.username, 'password': argv.password}
-  console.log('The credentials I got is ' + accountArray);
+  console.log('The credentials I got is ' + argv.website + ' ' + argv.username + ' ' + argv.password);
   console.log('Pushing to accountArray..');
   //push new password to array
   accountManager.push(accountArray)
   console.log('Saving to node-persist..');
   //save new password to storage
   storage.setItemSync('accounts', accountManager)
+  console.log('Account saved!');
 }
 
 // get credentials from database to command line
@@ -67,7 +68,7 @@ if (command === 'get-pass') {
   if (typeof matchedAccount === 'undefined') {
     console.log(argv.username + " doesn't exist");
   } else {
-    console.log('Account get: ');
+    console.log('Account found: ');
     console.log(matchedAccount);
   }
 

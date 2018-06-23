@@ -14,6 +14,7 @@
   "author": "Roderick Karlemstrand",
   "license": "GPL-3.0",
   "dependencies": {
+    "crypto-js": "^3.1.5",
     "node-persist": "^0.0.8",
     "yargs": "^3.15.0"
   }

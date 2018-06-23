@@ -5,7 +5,7 @@ var animal = '{"name": "Higgs"}';
 var pet = JSON.parse(animal);
 
 //add age property
-pet.age = "2";
+pet.age = 2;
 
 //convert back to JSON
 petJson = JSON.stringify(pet);

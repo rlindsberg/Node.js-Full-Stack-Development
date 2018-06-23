@@ -1,15 +1,14 @@
-var person = {
-  name: 'Lind',
-  age: 20
-};
+//JSON CHALLENGE
 
-var personJSON = JSON.stringify(person);
+//convert to js object
+var animal = '{"name": "Higgs"}';
+var pet = JSON.parse(animal);
 
-console.log(personJSON);
-console.log("personJSON's type is " + typeof personJSON);
+//add age property
+pet.age = "2";
 
-//convert json back to an object
-var personObject = JSON.parse(personJSON);
-console.log(personObject.name);
-console.log(personObject.age);
-console.log("personObject's type is " + typeof(personObject));
+//convert back to JSON
+petJson = JSON.stringify(pet);
+
+//log out
+console.log(petJson);

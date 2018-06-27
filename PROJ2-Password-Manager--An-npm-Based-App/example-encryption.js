@@ -1,14 +1,17 @@
+//CRYPTOGRAPHY CHALLENGE
+
+//encrypt an object
 var crypto = require('crypto-js');
 
-var secretMessage = "I hid the crisps under the couch! Don't tell anyone!";
-var secretKey = 'bad-key';
+var secretObj = {
+  name: 'James',
+  secretName: '007'
+}
+var secretKey = 'ej0RT-WEO0TÇ7&/8713jkJK.D]-1';
 
-//encrypt mes
-var encryptedMessage = crypto.AES.encrypt(secretMessage, secretKey);
-console.log('Encrypted message is: ' + encryptedMessage);
+var secretJSON = JSON.stringify(secretObj)
+var encryptedJSON = crypto.AES.encrypt(secretJSON, secretKey);
+console.log('Encrypted JSON is :' + encryptedJSON);
 
-//decrypt mes
-var decryptedBytes = crypto.AES.decrypt(encryptedMessage, secretKey);
-var decryptedMessage = decryptedBytes.toString(crypto.enc.Utf8);
 
-console.log("Decrypted message is : " + decryptedMessage);
+//decrypt an object

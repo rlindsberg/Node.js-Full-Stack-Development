@@ -15,3 +15,8 @@ console.log('Encrypted JSON is :' + encryptedJSON);
 
 
 //decrypt an object
+var bytes = crypto.AES.decrypt(encryptedJSON, secretKey);
+var decryptedJSON = bytes.toString(crypto.enc.Utf8);
+
+console.log(decryptedJSON);
+console.log(typeof(decryptedJSON));

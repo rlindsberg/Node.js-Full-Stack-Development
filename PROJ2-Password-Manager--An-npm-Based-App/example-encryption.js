@@ -23,4 +23,4 @@ console.log(typeof(decryptedJSON));
 
 var decryptedObj = JSON.parse(decryptedJSON);
 console.log('decrypted Object is: ' + decryptedObj);
-console.log(typeof(decryptedObj));
+console.log(decryptedObj);

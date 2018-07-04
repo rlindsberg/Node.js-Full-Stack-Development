@@ -1,9 +1,18 @@
-try {
-  throw new Error('Unable to decrypt account');
-} catch (e) {
-  console.log(e.message);
-} finally {
-  console.log('finally');
+function doWork(someTask) {
+  if (someTask.status === 'undone') {
+    throw new Error('WORK UNDONE!!!');
+  }
 }
 
-console.log('try catch ended');
+
+var task1 = {
+    'name': 'do the dishes',
+    'status': 'undone'
+};
+
+
+try {
+  doWork(task1);
+} catch (e) {
+  console.log(e.message);
+}

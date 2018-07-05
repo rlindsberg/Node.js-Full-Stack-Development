@@ -13,22 +13,26 @@ var argv = require('yargs')
       masterPassword:{
         demand: true,
         alias: 'm',
-        description: 'Enter your password to access password manager'
+        description: 'Enter your password to access password manager',
+        type: 'string'
       },
       website: {
         demand: true,
         alias: 'w',
-        description: 'Enter the website here, without http/https'
+        description: 'Enter the website here, without http/https',
+        type: 'string'
       },
       username: {
         demand: true,
         alias: 'u',
-        description: 'Enter your username or email address used to log in the website'
+        description: 'Enter your username or email address used to log in the website',
+        type: 'string'
       },
       password: {
         demand: true,
         alias: 'p',
-        description: 'Enter your password to the website'
+        description: 'Enter your password to the website',
+        type: 'string'
       }
     });
   })
@@ -37,12 +41,14 @@ var argv = require('yargs')
       masterPassword:{
         demand: true,
         alias: 'm',
-        description: 'Enter your password to access password manager'
+        description: 'Enter your password to access password manager',
+        type: 'string'
       },
       username: {
         demand: true,
         alias: 'u',
-        description: 'Enter your username or email address used to log in the website'
+        description: 'Enter your username or email address used to log in the website',
+        type: 'string'
       }
     });
   })

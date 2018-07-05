@@ -1,9 +1,8 @@
-setTimeout(function(){
-  console.log('1');
-}, 2000);
+function printInTwoSeconds(message) {
+  setTimeout(function(){
+    console.log(message);
+  }, 2000)
+}
 
-setTimeout(function(){
-  console.log('3');
-}, 1999);
-
-console.log('2');
+printInTwoSeconds('CHALLENGE');
+console.log('Hello async!');

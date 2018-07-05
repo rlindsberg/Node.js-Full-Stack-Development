@@ -1,5 +1,5 @@
 request = require('request');
-var urlAPI = 'https://samples.openweathermap.org/data/2.5/weather?q=Stockholm,SE&appid=b6907d289e10d714a6e88b30761fae22';
+var urlAPI = 'https://api.openweathermap.org/data/2.5/weather?q=Stockholm,SE&appid=12f270ae25c272675257d4de97f545de';
 
 //takes two parameters
 request({
@@ -9,8 +9,11 @@ request({
   if (error) {
     console.log('Unable to fetch weather.');
   } else {  //if no error
-    console.log(JSON.stringify(body, null, 4));
-  }
+    console.log(JSON.stringify(body, null, 4) + '\n');
 
+    var city = body.name;
+    var temp = body.main.temp;
+    console.log('The current temperature in ' + city + ' is ' + temp);
+  }
 
 })

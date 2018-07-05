@@ -1,5 +1,5 @@
 request = require('request');
-var urlAPI = 'https://api.openweathermap.org/data/2.5/weather?q=Stockholm,SE&appid=12f270ae25c272675257d4de97f545de';
+var urlAPI = 'https://api.openweathermap.org/data/2.5/weather?q=Stockholm,SE&units=metric&appid=12f270ae25c272675257d4de97f545de';
 
 //takes two parameters
 request({
@@ -13,7 +13,7 @@ request({
 
     var city = body.name;
     var temp = body.main.temp;
-    console.log('The current temperature in ' + city + ' is ' + temp);
+    console.log('The current temperature in ' + city + ' is ' + temp + '°C.');
   }
 
 })

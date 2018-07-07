@@ -13,7 +13,7 @@ module.exports = function(callback) {
     // console.log(body);
 
     if (error) {
-      callback();
+      callback(error);
       return;
     } else {  //if no error
       console.log('no error');

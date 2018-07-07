@@ -6,8 +6,11 @@ var location = require('./location.js');
 // });
 
 location(function(userLocation) {
-  if (!userLocation) {
-    console.log('There is an error!');
+  if (userLocation != null) {
+    console.log('Error requesting ' + userLocation.hostname + ':' + userLocation.port + ' \n');
+
+    console.log(userLocation);
+
     return;
   }
   console.log('city: ' + userLocation.city);

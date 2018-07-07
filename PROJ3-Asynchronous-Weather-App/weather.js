@@ -21,4 +21,4 @@ module.exports = function(callback) {
   })
 }
 
-console.log('After module exports');
+console.log('Weather.js After module exports');

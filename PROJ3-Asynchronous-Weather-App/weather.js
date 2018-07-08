@@ -8,7 +8,7 @@ module.exports = function(callback) {
     json: true
   }, function(error, respons, body){
     if (error) {
-      console.log('Unable to fetch weather.');
+      callback('Unable to fetch weather.');
     } else {  //if no error
       // console.log(JSON.stringify(body, null, 4) + '\n');
 

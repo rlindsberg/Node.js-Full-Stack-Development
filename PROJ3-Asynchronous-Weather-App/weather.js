@@ -1,7 +1,10 @@
 request = require('request');
-var urlAPI = 'https://api.openweathermap.org/data/2.5/weather?q=Stockholm,SE&units=metric&appid=12f270ae25c272675257d4de97f545de';
+var url = 'https://api.openweathermap.org/data/2.5/weather?q=units=metric&appid=12f270ae25c272675257d4de97f545de';
 
-module.exports = function(callback) {
+module.exports = function(UserLocation, callback) {
+  var urlAPI = url + '&UserLocation'
+  console.log('urlAPI is:');
+  console.log(urlAPI);
   //takes two parameters
   request({
     url: urlAPI,

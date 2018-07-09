@@ -1,4 +1,4 @@
-var urlAPI = "https://1ipinfo.io?token=2fd77d365b9c8e"
+var urlAPI = "https://ipinfo.io?token=2fd77d365b9c8e"
 
 module.exports = function(callback) {
   request({

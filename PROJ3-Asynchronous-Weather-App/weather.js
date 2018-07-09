@@ -12,6 +12,8 @@ module.exports = function(userLocation, callback) {
   }, function(error, respons, body){
     if (error) {
       callback('Unable to fetch weather.');
+    } else if (body.cod === '404'){
+      callback('City not found.')
     } else {  //if no error
       // console.log(JSON.stringify(body, null, 4) + '\n');
 

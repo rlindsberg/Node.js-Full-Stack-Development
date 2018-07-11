@@ -24,7 +24,10 @@ if (argv.location != null) {
       console.log('Error requesting ' + userLocation.hostname + ':' + userLocation.port + ' \n');
       return;
     }
-    //no error
+    //no error, log out location
+    console.log('Location not provided.');
+    console.log('I guess that you are in ' + userLocation.city + ', log/lat: ' + userLocation.loc);
+
     // get weather
     var city = userLocation.city;
     weather(city, function(currentWeather) {

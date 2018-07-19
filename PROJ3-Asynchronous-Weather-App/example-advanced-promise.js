@@ -35,8 +35,7 @@ function getLocation() {
         reject(error);
         return;
       } else {  //if no error
-        console.log('Location loopup successed. I guess that you\'re from:');
-        console.log(body.city + '\n');
+        console.log('Location loopup successed.');
         resolve(body.city);
       }
 
@@ -63,9 +62,10 @@ function getWeather(location) {
       } else {  //if no error
         // console.log(JSON.stringify(body, null, 4) + '\n');
 
-        var city = body.name;
-        var temp = body.main.temp;
-        resolve('The current temperature in ' + city + ' is ' + temp + '°C.');
+        // var city = body.name;
+        // var temp = body.main.temp;
+        // resolve('The current temperature in ' + city + ' is ' + temp + '°C.');
+        resolve(body);
         console.log('After resolve function in weather.js');
       }
 
@@ -75,4 +75,30 @@ function getWeather(location) {
 }
 
 
-getLocation();
+getLocation().then(function(locationGotFromGetLocation) {
+  console.log('I guess that you\'re from:');
+  console.log(locationGotFromGetLocation + '\n');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// end

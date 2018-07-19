@@ -1,23 +1,23 @@
-function doWork(shouldFail) {
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
-      if (typeof shouldFail === 'boolean' && shouldFail === true) { //no arg provided should also return resolve
-        reject('failed!');
-      } else {
-        resolve('successed!');
-      }
-    }, 1000);
-  });
-}
-
-doWork().then(function(successMessage) {
-  console.log(successMessage);
-  return doWork(true); //fire up another doWork after resolve.
-}).then(function(successMessage) {
-    console.log('second ' + successMessage);
-  }).catch(function(error) {
-    console.log(error);
-  });
+// function doWork(shouldFail) {
+//   return new Promise(function(resolve, reject) {
+//     setTimeout(function() {
+//       if (typeof shouldFail === 'boolean' && shouldFail === true) { //no arg provided should also return resolve
+//         reject('failed!');
+//       } else {
+//         resolve('successed!');
+//       }
+//     }, 1000);
+//   });
+// }
+//
+// doWork().then(function(successMessage) {
+//   console.log(successMessage);
+//   return doWork(true); //fire up another doWork after resolve.
+// }).then(function(successMessage) {
+//     console.log('second ' + successMessage);
+//   }).catch(function(error) {
+//     console.log(error);
+//   });
 
 
 //Begin challenge
@@ -43,11 +43,9 @@ function getLocation() {
   });
 }
 
-
-
 function getWeather(location) {
   return new Promise(function(resolve, reject) {
-    var urlAPI = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&units=metric&appid=12f270ae25c272675257d4de97f545de';
+    var urlAPI = 'https://aapi.openweathermap.org/data/2.5/weather?q=' + location + '&units=metric&appid=12f270ae25c272675257d4de97f545de';
     console.log('urlAPI is:');
     console.log(urlAPI);
     //takes two parameters
@@ -74,10 +72,17 @@ function getWeather(location) {
 
 }
 
-
+//run challenge
 getLocation().then(function(locationGotFromGetLocation) {
   console.log('I guess that you\'re from:');
   console.log(locationGotFromGetLocation + '\n');
+  return getWeather(locationGotFromGetLocation);
+}).then(function(weatherGotFromGetWeather) {
+  var city = weatherGotFromGetWeather.name;
+  var temp = weatherGotFromGetWeather.main.temp;
+  console.log('\nThe current temperature in ' + city + ' is ' + temp + '°C.');
+}, function(error){
+  console.log(error);
 });
 
 

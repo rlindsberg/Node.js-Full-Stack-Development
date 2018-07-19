@@ -1,20 +1,20 @@
 function doWork(shouldFail) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
-      if (shouldFail === true) {
-        console.log('done!');
+      if (typeof shouldFail === 'boolean' && shouldFail === true) { //no arg provided should also return resolve
         reject('failed!');
       } else {
-        resolve();
+        resolve('successed!');
       }
     }, 1000);
   });
 }
 
-doWork().then(function() {
+doWork().then(function(successMessage) {
+  console.log(successMessage);
   return doWork(true); //fire up another doWork after resolve.
-}).then(function() {
-    console.log('second doWork done!');
+}).then(function(successMessage) {
+    console.log('second ' + successMessage);
   }).catch(function(error) {
     console.log(error);
   });

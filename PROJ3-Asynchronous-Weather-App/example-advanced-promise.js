@@ -30,7 +30,6 @@ function getLocation() {
       url: urlAPI,
       json: true
     }, function(error, respons, body){
-
       if (error) {
         reject(error);
         return;
@@ -45,7 +44,7 @@ function getLocation() {
 
 function getWeather(location) {
   return new Promise(function(resolve, reject) {
-    var urlAPI = 'https://aapi.openweathermap.org/data/2.5/weather?q=' + location + '&units=metric&appid=12f270ae25c272675257d4de97f545de';
+    var urlAPI = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&units=metric&appid=12f270ae25c272675257d4de97f545de';
     console.log('urlAPI is:');
     console.log(urlAPI);
     //takes two parameters
@@ -60,10 +59,9 @@ function getWeather(location) {
       } else {  //if no error
         // console.log(JSON.stringify(body, null, 4) + '\n');
 
-        // var city = body.name;
-        // var temp = body.main.temp;
-        // resolve('The current temperature in ' + city + ' is ' + temp + '°C.');
-        resolve(body);
+        var city = body.name;
+        var temp = body.main.temp;
+        resolve('\nThe current temperature in ' + city + ' is ' + temp + '°C.');
         console.log('After resolve function in weather.js');
       }
 
@@ -76,12 +74,10 @@ function getWeather(location) {
 getLocation().then(function(locationGotFromGetLocation) {
   console.log('I guess that you\'re from:');
   console.log(locationGotFromGetLocation + '\n');
-  return getWeather(locationGotFromGetLocation);
+  return getWeather(locationGotFromGetLocation); //return another promise
 }).then(function(weatherGotFromGetWeather) {
-  var city = weatherGotFromGetWeather.name;
-  var temp = weatherGotFromGetWeather.main.temp;
-  console.log('\nThe current temperature in ' + city + ' is ' + temp + '°C.');
-}, function(error){
+    console.log(weatherGotFromGetWeather);
+  }, function(error){
   console.log(error);
 });
 

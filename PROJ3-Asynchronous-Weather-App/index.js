@@ -13,25 +13,38 @@ var argv = require('yargs')
 
 // if location is provided
 if (argv.location != null) {
-  console.log(argv.location);
-  // get weather
-  weather(argv.l, function(currentWeather) {
-    console.log(currentWeather);
-  });
-} else { //if location not provided
-  location(function(userLocation) {
-    if (userLocation.errno != null) { //if error
-      console.log('Error requesting ' + userLocation.hostname + ':' + userLocation.port + ' \n');
-      return;
+  console.log('Location provided by user: ' + argv.location + '\n');
+  //get weather
+  weather(argv.l).then(
+    function(weatherGotFromGetWeather) {
+      console.log(weatherGotFromGetWeather);
+    },
+    function(reject) {
+      console.log(reject);
     }
-    //no error, log out location
-    console.log('Location not provided.');
-    console.log('I guess that you are in ' + userLocation.city + ', log/lat: ' + userLocation.loc);
+  ).catch(
+    function(e) {
+      console.log(e);
+    }
+  )
 
-    // get weather
-    var city = userLocation.city;
-    weather(city, function(currentWeather) {
-      console.log(currentWeather);
-    });
+} else { //if location not provided
+  location().then(
+    function(locationGotFromGetLocation) {
+      console.log('I guess that you\'re from: ' + locationGotFromGetLocation + '\n');
+      return weather(locationGotFromGetLocation); //return another promise
+    },
+    function(reject) {
+      console.log(reject);
+    }).then(
+      function(weatherGotFromGetWeather) {
+        console.log(weatherGotFromGetWeather);
+      },
+      function(reject) {
+        console.log(reject);
+      }
+    ).catch(function(e) {
+      console.log(e);
   })
+
 }

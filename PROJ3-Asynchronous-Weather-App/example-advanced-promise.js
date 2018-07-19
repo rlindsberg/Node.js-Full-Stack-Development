@@ -1,16 +1,20 @@
-function doWork() {
+function doWork(shouldFail) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
-      console.log('done!');
-      resolve();
+      if (shouldFail === true) {
+        console.log('done!');
+        reject('failed!');
+      } else {
+        resolve();
+      }
     }, 1000);
   });
 }
 
 doWork().then(function() {
-  return doWork(); //fire up another doWork after resolve.
+  return doWork(true); //fire up another doWork after resolve.
 }).then(function() {
     console.log('second doWork done!');
-  }, function() {
-    console.log('second doWork failed');
+  }).catch(function(error) {
+    console.log(error);
   });

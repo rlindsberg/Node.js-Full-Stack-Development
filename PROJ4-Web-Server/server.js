@@ -7,10 +7,14 @@ var middleware = {
     requireAuthentication: function(req, res, next) {
       console.log('Private route hit');
       next();
+    },
+    logger: function(req, res, next) {
+      console.log(req.method + ' ' + req.originalUrl);
+      next();
     }
 };
 
-// app.use(middleware.requireAuthentication); //app-level
+app.use(middleware.logger); //app-level
 
 app.get('/about-us', middleware.requireAuthentication, function(req, res) {
     res.send('About Us!')

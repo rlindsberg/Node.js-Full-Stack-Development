@@ -2,7 +2,17 @@ var express = require('express');
 var app = express();
 let port = 3000;
 
-app.get('/about-us', function(req, res) {
+//route-level middleware
+var middleware = {
+    requireAuthentication: function(req, res, next) {
+      console.log('Private route hit');
+      next();
+    }
+};
+
+// app.use(middleware.requireAuthentication); //app-level
+
+app.get('/about-us', middleware.requireAuthentication, function(req, res) {
     res.send('About Us!')
   }
 );

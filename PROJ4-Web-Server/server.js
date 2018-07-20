@@ -1,20 +1,10 @@
+//express.js
 var express = require('express');
 var app = express();
 let port = 3000;
+//middleware
+var middleware = require('./middleware.js')
 
-//route-level middleware
-var middleware = {
-    requireAuthentication: function(req, res, next) {
-      console.log('Private route hit');
-      next();
-    },
-    logger: function(req, res, next) {
-      var date = new Date().toString();
-      var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-      console.log(ip + ' - - [' + date + '] ' + req.method + ' ' + req.originalUrl);
-      next();
-    }
-};
 
 app.use(middleware.logger); //app-level
 

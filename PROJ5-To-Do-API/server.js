@@ -1,9 +1,13 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var PORT = process.env.PORT || 3000; //heroku port or local port 3000
 
 var todos = [];
 var todoNextId = 1;
+
+//add middleware to parse json to req.body
+app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
   res.send('To do API root');
@@ -26,7 +30,9 @@ app.get('/todos/:id', function(req, res) {
 
 //POST /todos
 app.post('/todos', function(req, res) {
-  
+  var body = req.body;
+  res.send(body);
+
 });
 
 app.listen(PORT, function() {

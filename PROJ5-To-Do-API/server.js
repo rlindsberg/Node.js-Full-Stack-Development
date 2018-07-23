@@ -2,20 +2,8 @@ var express = require('express');
 var app = express();
 var PORT = process.env.PORT || 3000; //heroku port or local port 3000
 
-var todos = [{
-    id: 1,
-    description: 'Meet mom for lunch',
-    completed : false
-  }, {
-    id: 2,
-    description: 'Go to market',
-    completed: false
-  }, {
-    id: 3,
-    description: 'Clean room',
-    completed: true
-  }
-];
+var todos = [];
+var todoNextId = 1;
 
 app.get('/', function(req, res) {
   res.send('To do API root');
@@ -36,6 +24,10 @@ app.get('/todos/:id', function(req, res) {
   }
 });
 
+//POST /todos
+app.post('/todos', function(req, res) {
+  
+});
 
 app.listen(PORT, function() {
   console.log('Express server listening at: 127.0.0.1:' + PORT);

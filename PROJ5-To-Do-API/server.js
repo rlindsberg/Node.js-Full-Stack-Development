@@ -30,7 +30,9 @@ app.get('/todos/:id', function(req, res) {
 
 //POST /todos
 app.post('/todos', function(req, res) {
-  var body = req.body;
+  var body = req.body; //object
+  body.id = todoNextId;
+  todos.push(body);
   res.send(body);
 
 });

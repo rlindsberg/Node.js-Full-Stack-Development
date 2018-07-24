@@ -31,7 +31,7 @@ app.get('/todos/:id', function(req, res) {
 //POST /todos
 app.post('/todos', function(req, res) {
   var body = req.body; //object
-  body.id = todoNextId;
+  body.id = todoNextId++; //add id to body first, then increment it by 1.
   todos.push(body);
   res.send(body);
 

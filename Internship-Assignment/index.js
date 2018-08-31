@@ -30,6 +30,28 @@ if (amountInEUR != null) {
           var amountInSEK = amountInEUR * EurPerSEK;
           console.log(amountInEUR + ' EUR is equal to ' + amountInSEK.toFixed(2) + ' SEK' );
         }
-      ).catch()
+      ).catch(function(err){
+          console.log(err);
+      })
+    }
+}
+
+//This section violates DRY and should be move to a library.
+var amountInSEK = argv.sek;
+if (amountInSEK != null) {
+    //check for a valid input
+    if (amountInSEK < 0 || isNaN(amountInSEK) ) {
+      //invalid input
+      console.log('Please enter a positive number, with or without decimals.');
+    } else {
+      //valid input
+      rates().then(
+        function(SekPerEUR) {
+          var amountInEUR = amountInSEK / SekPerEUR;
+          console.log(amountInSEK + ' SEK is equal to ' + amountInEUR.toFixed(2) + ' EUR' );
+        }
+      ).catch(function(err){
+          console.log(err);
+      })
     }
 }

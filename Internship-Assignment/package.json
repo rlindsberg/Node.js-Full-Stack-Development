@@ -1,0 +1,23 @@
+{
+  "name": "internship-assignment",
+  "version": "1.0.0",
+  "description": "A simple Web API to cenvert SEK to EUR and vice versa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rlindsberg/Node.js-Full-Stack-Development.git"
+  },
+  "keywords": [
+    "RESTfulAPI",
+    "CurrencyConverter"
+  ],
+  "author": "Roderick Karlemstrand",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rlindsberg/Node.js-Full-Stack-Development/issues"
+  },
+  "homepage": "https://github.com/rlindsberg/Node.js-Full-Stack-Development#readme"
+}

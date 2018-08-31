@@ -7,7 +7,15 @@ module.exports = function getEurPerSekRate() {
       url: urlAPI,
       json: true
       }, function(error, respons, body) {
-        resolve(JSON.stringify(body, null, 4));
+        if (error) {
+          reject('Unable to fetch real-time rates from flixer.io. Please try again later.');
+        } else if (body.success == 'false') {
+          reject(body.error.type);
+        } else {
+            var rate = body.rates.SEK;
+            console.log('The rate of EUR/SEK is: ' + rate);
+            resolve(rate);
+        }
       }
     ) //end request
   }); //end promise

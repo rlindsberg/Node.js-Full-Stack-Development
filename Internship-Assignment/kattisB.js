@@ -1,9 +1,11 @@
-// var sample = "ABC";
-// var long = "ABCZAFDABABCFABC"
-var sample = "AAA";
-var long = "AAAAAAA"
+var sample = "AGCT";
+var long = "AGCTAGCT"
+
+// var sample = "AAA";
+// var long = "AAAAAAAAAA"
 var res = 0;
-console.log(matchSample(sample, long, long.length));
+// console.log(matchSample(sample, long, long.length));
+console.log(matchReducedString(sample, long, long.length));
 
 // i should be 0 from caller
 function matchSample(sample, long, l_index) {
@@ -27,4 +29,14 @@ function checkEveryChar(sample, long, l_index) {
         }
     }
     return true;
+}
+
+//type 2
+function matchReducedString(sample, long, l_index) {
+    for (var i = 0; i < sample.length; i++) {
+        //throw away one char from sample
+        var slicedSample = sample.replace(sample[i], '');
+        matchSample(slicedSample, long, l_index);
+    }
+    return res;
 }

@@ -66,10 +66,31 @@ function checkEveryChar(sample, long, l_index) {
 
 //type 2
 function matchReducedString(sample, long, l_index, res) {
+    var res_arr = [];
+    var res_index = 0;
     for (var i = 0; i < sample.length; i++) {
         //throw away one char from sample
         var slicedSample = sample.replace(sample[i], '');
-        res = matchSample(slicedSample, long, l_index, res);
+        //check for duplicate.
+        //fall 1, if empty array
+        if (res_arr.length == 0) {
+            res_arr[0] = slicedSample;
+        }
+        //fall 2, not empty
+        for (var k = 0; k < res_arr.length; k++) {
+            if (res_arr[k] == slicedSample) {
+                break;
+            }
+            if (k == res_arr.length - 1) {
+                res_arr[res_arr.length] = slicedSample;
+            }
+        }
+    }
+    //call matchSample with all ele in res_arr
+    for (var i = 0; i < res_arr.length; i++) {
+
+        res = matchSample(res_arr[i], long, l_index, 0);
+
     }
     return res;
 }

@@ -1,14 +1,30 @@
-var sample = "AGCT";
-var long = "AGCTAGCT"
+// var sample = "AGCT";
+// var long = "AGCTAGCT"
+//
+// // var sample = "AAA";
+// // var long = "AAAAAAAAAA"
 
-// var sample = "AAA";
-// var long = "AAAAAAAAAA"
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.on('line', (line) => {
+    var inputFromConsole = line.split(' ');
+    //testing... sample == AGCT
+    //and long == AGCTAGCT
+    var sample = inputFromConsole[0];
+    var long = inputFromConsole[1]
+
+    var res = 0
+    console.log(matchSample(sample, long, long.length) + " " + matchReducedString(sample, long, long.length) + " " + matchAddedString(sample, long, long.length));
+
+
+});
 
 var res = 0;
-console.log(matchSample(sample, long, long.length));
-console.log(matchReducedString(sample, long, long.length));
-console.log(matchAddedString(sample, long, long.length));
-
 // i should be 0 from caller
 function matchSample(sample, long, l_index) {
     if (l_index==0)
@@ -71,34 +87,3 @@ function matchAddedString(sample, long, l_index) {
     }
     return res;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//eof

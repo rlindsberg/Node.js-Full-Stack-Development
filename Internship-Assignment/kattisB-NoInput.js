@@ -1,8 +1,8 @@
-// var sample = "AGCT";
-// var long = "AGCTAGCT"
+var sample = "AGCT";
+var long = "AGCTAGCT"
 //
-var sample = "AAA";
-var long = "AAAAAAAAAA"
+// var sample = "AAA";
+// var long = "AAAAAAAAAA"
 
 
 console.log(matchSample(sample, long, long.length, 0));
@@ -64,7 +64,7 @@ function matchReducedString(sample, long, l_index, res) {
     //call matchSample with all ele in res_arr
     for (var i = 0; i < res_arr.length; i++) {
 
-        res = matchSample(res_arr[i], long, l_index, 0);
+        res = res + matchSample(res_arr[i], long, l_index, 0);
 
     }
     return res;

@@ -1,15 +1,16 @@
-var sample = "AG";
+var sample = "AGCT";
 var long = "AGCTAGCT"
 
 // var sample = "AAA";
 // var long = "AAAAAAAAAA"
-var res1 = 0;
-console.log(matchSample(sample, long, long.length, res1));
-console.log(matchReducedString(sample, long, long.length, 0));
-console.log(matchAddedString(sample, long, long.length, 0));
+
+var res = 0;
+console.log(matchSample(sample, long, long.length));
+console.log(matchReducedString(sample, long, long.length));
+console.log(matchAddedString(sample, long, long.length));
 
 // i should be 0 from caller
-function matchSample(sample, long, l_index, res) {
+function matchSample(sample, long, l_index) {
     if (l_index==0)
         return res;
 
@@ -33,17 +34,19 @@ function checkEveryChar(sample, long, l_index) {
 }
 
 //type 2
-function matchReducedString(sample, long, l_index, res) {
+function matchReducedString(sample, long, l_index) {
+    res = 0;
     for (var i = 0; i < sample.length; i++) {
         //throw away one char from sample
         var slicedSample = sample.replace(sample[i], '');
-        res = matchSample(slicedSample, long, l_index, res);
+        matchSample(slicedSample, long, l_index);
     }
     return res;
 }
 
 //type 3
-function matchAddedString(sample, long, l_index, res) {
+function matchAddedString(sample, long, l_index) {
+    res = 0;
     var nucleobase = ["A", "C", "G", "T"];
     var res_arr = [];
     var res_index = 0;
@@ -64,7 +67,7 @@ function matchAddedString(sample, long, l_index, res) {
     }
 
     for (var i = 0; i < res_arr.length; i++) {
-        res = 1 + matchSample(res_arr[i], long, l_index);
+        matchSample(res_arr[i], long, l_index);
     }
     return res;
 }

@@ -15,28 +15,43 @@ rl.on('line', (line) => {
     var inputFromConsole = line.split(' ');
     //testing... sample == AGCT
     //and long == AGCTAGCT
-    var sample = inputFromConsole[0];
-    var long = inputFromConsole[1]
 
-    var res = 0
-    console.log(matchSample(sample, long, long.length) + " " + matchReducedString(sample, long, long.length) + " " + matchAddedString(sample, long, long.length));
+    //last input is a single 0
+    if (inputFromConsole[1] == undefined) {
+        console.log("0 0 0");
+        return;
+    } else {
+        var sample = inputFromConsole[0];
+        var long = inputFromConsole[1];
+        var long_length = inputFromConsole[1].length;
+
+
+        var type1 = matchSample(sample, long, long_length, 0).toString();
+
+        var type2 = matchReducedString(sample, long, long_length, 0).toString();
+
+        var type3 = matchAddedString(sample, long, long_length, 0).toString();
+
+        console.log( type1 + " " + type2 + " " + type3);
+    }
 
 
 });
 
-var res = 0;
+
+// res = 0;
 // i should be 0 from caller
-function matchSample(sample, long, l_index) {
+function matchSample(sample, long, l_index, res) {
     if (l_index==0)
         return res;
 
         if (checkEveryChar(sample, long, l_index)) {
-            return res = 1 + matchSample(sample, long, l_index-1)
+            return res = matchSample(sample, long, l_index-1, res+1)
     }
-       else return res =  matchSample(sample, long, l_index-1)
+       else return res =  matchSample(sample, long, l_index-1, res)
 
     //nothing found
-    console.log(0);
+    // console.log(0);
 
 }
 
@@ -50,19 +65,17 @@ function checkEveryChar(sample, long, l_index) {
 }
 
 //type 2
-function matchReducedString(sample, long, l_index) {
-    res = 0;
+function matchReducedString(sample, long, l_index, res) {
     for (var i = 0; i < sample.length; i++) {
         //throw away one char from sample
         var slicedSample = sample.replace(sample[i], '');
-        matchSample(slicedSample, long, l_index);
+        res = matchSample(slicedSample, long, l_index, res);
     }
     return res;
 }
 
 //type 3
-function matchAddedString(sample, long, l_index) {
-    res = 0;
+function matchAddedString(sample, long, l_index, res) {
     var nucleobase = ["A", "C", "G", "T"];
     var res_arr = [];
     var res_index = 0;
@@ -83,7 +96,7 @@ function matchAddedString(sample, long, l_index) {
     }
 
     for (var i = 0; i < res_arr.length; i++) {
-        matchSample(res_arr[i], long, l_index);
+        res = res + matchSample(res_arr[i], long, l_index, 0);
     }
     return res;
 }

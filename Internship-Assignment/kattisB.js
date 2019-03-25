@@ -3,12 +3,13 @@ var long = "AGCTAGCT"
 
 // var sample = "AAA";
 // var long = "AAAAAAAAAA"
-var res = 0;
-// console.log(matchSample(sample, long, long.length));
-// console.log(matchReducedString(sample, long, long.length));
-matchAddedString(sample, long, long.length);
+var res1 = 0;
+console.log(matchSample(sample, long, long.length, res1));
+console.log(matchReducedString(sample, long, long.length, 0));
+console.log(matchAddedString(sample, long, long.length, 0));
+
 // i should be 0 from caller
-function matchSample(sample, long, l_index) {
+function matchSample(sample, long, l_index, res) {
     if (l_index==0)
         return res;
 
@@ -32,40 +33,40 @@ function checkEveryChar(sample, long, l_index) {
 }
 
 //type 2
-function matchReducedString(sample, long, l_index) {
+function matchReducedString(sample, long, l_index, res) {
     for (var i = 0; i < sample.length; i++) {
         //throw away one char from sample
         var slicedSample = sample.replace(sample[i], '');
-        matchSample(slicedSample, long, l_index);
+        res = matchSample(slicedSample, long, l_index, res);
     }
     return res;
 }
 
 //type 3
-function matchAddedString(sample, long, l_index) {
+function matchAddedString(sample, long, l_index, res) {
     var nucleobase = ["A", "C", "G", "T"];
-    var res = [];
+    var res_arr = [];
     var res_index = 0;
     for (var i = 0; i <= sample.length; i++) {
         for (var j = 0; j < 4; j++) {
             var newString = sample.slice(0, i) + nucleobase[j] + sample.slice(i);
             //check for duplicate
             for (var k = 0; k < l_index; k++) {
-                if (res[k] == newString) {
+                if (res_arr[k] == newString) {
                     break;
                 }
                 if (k == l_index - 1) {
-                    res[res_index] = newString;
+                    res_arr[res_index] = newString;
                     res_index++;
                 }
             }
         }
     }
-    // sample.slice(0, 1) + "bar" + txt1.slice(1);
-    console.log("array:");
-    for (var i = 0; i < res.length; i++) {
-        console.log(res[i]);
+
+    for (var i = 0; i < res_arr.length; i++) {
+        res = 1 + matchSample(res_arr[i], long, l_index);
     }
+    return res;
 }
 
 

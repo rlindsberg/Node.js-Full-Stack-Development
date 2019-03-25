@@ -18,8 +18,7 @@ rl.on('line', (line) => {
 
     //last input is a single 0
     if (inputFromConsole[1] == undefined) {
-        console.log("0 0 0");
-        return;
+        rl.close();
     } else {
         var sample = inputFromConsole[0];
         var long = inputFromConsole[1];
@@ -89,7 +88,7 @@ function matchReducedString(sample, long, l_index, res) {
     //call matchSample with all ele in res_arr
     for (var i = 0; i < res_arr.length; i++) {
 
-        res = matchSample(res_arr[i], long, l_index, 0);
+        res = res + matchSample(res_arr[i], long, l_index, 0);
 
     }
     return res;

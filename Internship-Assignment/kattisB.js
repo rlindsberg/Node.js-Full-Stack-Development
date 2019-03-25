@@ -1,4 +1,4 @@
-var sample = "AGCT";
+var sample = "AG";
 var long = "AGCTAGCT"
 
 // var sample = "AAA";
@@ -46,16 +46,19 @@ function matchAddedString(sample, long, l_index) {
     var nucleobase = ["A", "C", "G", "T"];
     var res = [];
     var res_index = 0;
-    for (var i = 0; i < sample.length; i++) {
+    for (var i = 0; i <= sample.length; i++) {
         for (var j = 0; j < 4; j++) {
             var newString = sample.slice(0, i) + nucleobase[j] + sample.slice(i);
-            for (var k = 0; k < res.length; k++) {
+            //check for duplicate
+            for (var k = 0; k < l_index; k++) {
                 if (res[k] == newString) {
                     break;
                 }
+                if (k == l_index - 1) {
+                    res[res_index] = newString;
+                    res_index++;
+                }
             }
-            res[res_index] = newString;
-            res_index++;
         }
     }
     // sample.slice(0, 1) + "bar" + txt1.slice(1);
